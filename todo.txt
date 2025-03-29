@@ -15,3 +15,10 @@ open
 - probe presentiere ohne text
 - evt verbessern
 - ready
+
+
+quarto render num_ex15.qmd
+
+python3 -m venv venv
+source venv/bin/activate
+pip install --upgrade pip
