@@ -1,0 +1,295 @@
+---
+title: "Numerik Präsentation"
+subtitle: Aufgabe 15 (Flugzeugflügelprofil)
+author: "Gian Ruchti"
+format: 
+  revealjs:
+    theme: solarized
+    slide-number: true
+    mathjax: true
+    transition: fade
+    toc: true
+---
+
+## Aufgabe 15 – Profil eines Flugzeugflügels
+
+Gegeben ist die Funktion:
+
+$$
+t(x) = 0.15 \cdot \left(3.8\sqrt{x} - 3.2x - 0.3x^4\right), \quad x \geq 0
+$$
+
+Diese beschreibt die Oberseite (halber Durchmesser) eines Flugzeugflügels, solange $t(x) \geq 0$ gilt.
+
+**Aufgabenstellung:**
+
+a) Bestimmen Sie die Flügelhinterkante $x_{max}$  
+b) Berechnen Sie den maximalen halben Durchmesser $t_{max}$ Genauigkeit: $10^{-6}$ Wählen Sie jeweils sinnvolle Startwerte.
+
+![Aufgabenstellung](DE4208FF-1D72-488B-B453-27D4C18B5711.png){ width=45% }
+
+---
+
+## Graphische Darstellung
+
+```{python}
+import numpy as np
+import matplotlib.pyplot as plt
+
+def t(x):
+    return 0.15 * (3.8 * np.sqrt(x) - 3.2 * x - 0.3 * x**4)
+
+x = np.linspace(0.001, 2, 400)
+y = t(x)
+
+plt.plot(x, y)
+plt.title("Funktion t(x)")
+plt.xlabel("x")
+plt.ylabel("t(x)")
+plt.grid(True)
+plt.show()
+```
+a) wir suchen die Nullstelle der funktion im positiven bereich
+b) wir suchen den x-wert wo die steigung = 0 ist (lokales min/max)
+---
+
+
+
+
+## Newton-Verfahren – Iterationsformel
+
+Das Newton-Verfahren basiert auf der Formel:
+
+$$
+x_{n+1} = x_n - \frac{t(x_n)}{t'(x_n)}
+$$
+
+Dabei ist:
+
+- t(x)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: die Funktion, deren Nullstelle gesucht wird 
+- t'(x)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: die Ableitung der Funktion  
+- x_n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: aktuelle Näherung  
+- x_{n+1}&nbsp;&nbsp;: nächste Näherung  
+
+---
+
+## Ableitungen
+
+Die Funktion:
+
+$$
+t(x) = 0.15 \cdot \left(3.8\sqrt{x} - 3.2x - 0.3x^4\right)
+$$
+
+Ihre erste Ableitung:
+
+$$
+t'(x) = 0.15 \cdot \left(\frac{3.8}{2\sqrt{x}} - 3.2 - 1.2x^3\right)
+$$
+
+---
+
+## Wertetabelle zur Bestimmung von \( x_{max} \)
+
+Die folgende Tabelle zeigt Funktionswerte von \( t(x) \) im Bereich von \(1.00\) bis \(1.25\), sodass der Vorzeichenwechsel klar erkennbar ist:
+
+```{python}
+import pandas as pd
+import numpy as np
+
+# Wertebereich definieren
+x_values = np.arange(1.00, 1.25 + 0.05, 0.05)
+t_values = t(x_values)
+
+# DataFrame erstellen
+table = pd.DataFrame({
+    'x': np.round(x_values, 4),
+    't(x)': np.round(t_values, 6),
+    'Vorzeichen': ['+' if val > 0 else '-' for val in t_values]
+})
+
+# Als Markdown-Tabelle ausgeben (wichtig!)
+print(table.to_markdown(index=False))
+```
+
+Als Startwert => x0 = 1.1
+
+
+---
+
+## Newton-Verfahren – Python-Code (scrollbar)
+
+```{python}
+#| echo: true
+#| code-overflow: scroll
+
+import numpy as np
+import pandas as pd
+
+# Funktion t(x): beschreibt die halbe Dicke des Flügelprofils
+def t(x):
+    return 0.15 * (3.8 * np.sqrt(x) - 3.2 * x - 0.3 * x**4)
+
+# Erste Ableitung t'(x): notwendig für Newton-Verfahren
+def dt(x):
+    return 0.15 * (3.8 / (2 * np.sqrt(x)) - 3.2 - 1.2 * x**3)
+
+x0 = 1.1
+tol = 1e-6
+max_iter = 20
+
+data = []
+
+for i in range(max_iter):
+    f_val = t(x0)
+    df_val = dt(x0)
+    x1 = x0 - f_val / df_val
+    dx = abs(x1 - x0)
+    data.append([i, round(x0, 6), round(f_val, 6), f"{dx:.2e}"])
+    if dx < tol:
+        break
+    x0 = x1
+
+x_result = round(x1, 6)
+t_result = round(t(x_result), 6)
+
+df_result = pd.DataFrame(data, columns=["Iter", "x_n", "t(x_n)", "Δx"])
+```
+
+---
+
+## Ergebnis des Newton-Verfahrens
+
+```{python}
+# Ergebnis als Tabelle anzeigen
+print(df_result.to_markdown(index=False))
+
+# Endergebnis separat
+print(f"\nx_max ≈ {x_result}")
+print(f"t(x_max) ≈ {t_result}")
+```
+
+---
+
+## Bisektionsverfahren für Maximum \( t_{max} \) (scrollbar)
+
+```{python}
+#| echo: true
+#| code-overflow: scroll
+
+import numpy as np
+import pandas as pd
+
+# Funktionen definieren (erste Ableitung und Originalfunktion)
+def dt(x):
+    return 0.15 * (3.8 / (2 * np.sqrt(x)) - 3.2 - 1.2 * x**3)
+
+def t(x):
+    return 0.15 * (3.8 * np.sqrt(x) - 3.2 * x - 0.3 * x**4)
+
+# Anfangsintervall [a,b] festlegen
+a, b = 0.001, 1.108
+tol = 1e-6
+max_iter = 50
+
+# Liste für Iterationsdaten
+data_bisektion = []
+
+for i in range(max_iter):
+    xm = (a + b) / 2
+    fa = dt(a)
+    fxm = dt(xm)
+    
+    # Iterationsdaten speichern
+    data_bisektion.append([i, round(a, 6), round(b, 6), round(xm, 6), round(fxm, 6), f"{abs(b - a):.2e}"])
+    
+    # Abbruchkriterium prüfen
+    if abs(fxm) < tol or abs(b - a) < tol:
+        break
+    
+    # Intervall-Halbierung durchführen
+    if fa * fxm < 0:
+        b = xm
+    else:
+        a = xm
+
+
+```
+---
+
+## Ergebnis der Bisektion – Maximale Dicke \( t_{max} \)
+
+```{python}
+# Ergebnisse als DataFrame anzeigen
+df_bisektion = pd.DataFrame(data_bisektion, columns=["Iter", "a", "b", "x_m", "t'(x_m)", "Δ(b - a)"])
+print(df_bisektion.to_markdown(index=False))
+
+# Endergebnis separat und übersichtlich ausgeben
+x_max_bisektion = round(xm, 6)
+t_max_bisektion = round(t(x_max_bisektion), 6)
+
+```
+
+Endergebnis: <br>
+x_max ≈ 0.34218<br>
+Maximale Dicke t_max ≈ 0.168565
+---
+
+## Verifikation des Ergebnisses (optimiert)
+
+```{python}
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Funktion definieren
+def t(x):
+    return 0.15 * (3.8 * np.sqrt(x) - 3.2 * x - 0.3 * x**4)
+
+# Wertebereich anpassen
+x_vals = np.linspace(0, 1.5, 400)
+y_vals = t(x_vals)
+
+# Ergebnisse markieren
+x_max_dicke = 0.34218
+t_max_dicke = t(x_max_dicke)
+
+x_hinterkante = 1.108724
+t_hinterkante = t(x_hinterkante)
+
+# Plot erzeugen
+plt.figure(figsize=(9,6))
+plt.plot(x_vals, y_vals, label="t(x)", linewidth=1.8)
+plt.grid(True)
+
+# Max. Dicke markieren (rot)
+plt.plot(x_max_dicke, t_max_dicke, 'ro', markersize=10, label="Maximale Dicke")
+plt.annotate(f"Max Dicke\n({x_max_dicke:.3f}, {t_max_dicke:.3f})",
+             xy=(x_max_dicke, t_max_dicke),
+             xytext=(x_max_dicke+0.2, t_max_dicke-0.03),  # Position tiefer gesetzt
+             fontsize=9,
+             bbox=dict(boxstyle="round,pad=0.3", edgecolor="red", facecolor="aliceblue"),
+             arrowprops=dict(arrowstyle="->", color="red"))
+
+# Hinterkante markieren (grün)
+plt.plot(x_hinterkante, t_hinterkante, 'go', markersize=10, label="Flügelhinterkante (t≈0)")
+plt.annotate(f"Hinterkante\n({x_hinterkante:.3f}, {t_hinterkante:.4f})",
+             xy=(x_hinterkante, t_hinterkante),
+             xytext=(x_hinterkante-0.6, t_hinterkante-0.1),
+             fontsize=9,
+             bbox=dict(boxstyle="round,pad=0.3", edgecolor="green", facecolor="honeydew"),
+             arrowprops=dict(arrowstyle="->", color="green"))
+
+# Achsenbeschriftungen und Titel
+plt.title("Verifikation der berechneten Punkte (optimiert)", pad=15)
+plt.xlabel("x")
+plt.ylabel("t(x)")
+plt.legend()
+
+# Plotbereich erweitern, um Labels besser zu platzieren
+plt.ylim(-0.25, 0.2)
+
+plt.show()
+```
+
+## Danke für deine Aufmerksamkeit
+📌 **Fragen und Diskussionen sind willkommen!**

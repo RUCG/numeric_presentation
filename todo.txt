@@ -1,0 +1,11 @@
+
+1. aufgabe vorstellen
+2. lösungsweg vorstellen a
+3. therorie zum newton verfahren zeigen und auf funktion anwenden
+4. ableitungen berechnen
+4. code zeigen für itteration und abbruchkriterium (code soll input outout und differenz zu vorherigemwert ausgeben)
+5. lösung zeigen für a
+6. lösungsweg vorstellen b (newtonverfahren mit erster und zweiter ableitung, minimale steigung finden für f min/max)
+7. vorstellung visuelle suche eines näherungspunktes
+8. code zeigen für itteration und abbruchkriterium (code soll input outout und differenz zu vorherigemwert ausgeben, auf 10−6 genau)
+
