@@ -9,3 +9,9 @@
 7. vorstellung visuelle suche eines näherungspunktes
 8. code zeigen für itteration und abbruchkriterium (code soll input outout und differenz zu vorherigemwert ausgeben, auf 10−6 genau)
 
+open
+
+- titel und table of content anpassen
+- probe presentiere ohne text
+- evt verbessern
+- ready
