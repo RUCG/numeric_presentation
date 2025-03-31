@@ -1,6 +1,6 @@
 ---
 title: "Numerik Präsentation"
-subtitle: Aufgabe 15 (Flugzeugflügelprofil)
+subtitle: Aufgabe 15 (Profil eines Flugzeugflügels)
 author: "Gian Ruchti"
 format: 
   revealjs:
@@ -11,7 +11,7 @@ format:
     toc: true
 ---
 
-## Aufgabe 15 – Profil eines Flugzeugflügels
+## Aufgabenbeschreibung
 
 Gegeben ist die Funktion:
 
@@ -49,8 +49,8 @@ plt.ylabel("t(x)")
 plt.grid(True)
 plt.show()
 ```
-a) wir suchen die Nullstelle der funktion im positiven bereich
-b) wir suchen den x-wert wo die steigung = 0 ist (lokales min/max)
+a) Wir suchen die Nullstelle der Funktion im positiven Bereich.  
+b) Wir suchen den x-Wert, bei dem die Steigung gleich 0 ist (lokales Minimum/Maximum).
 ---
 
 
@@ -73,7 +73,7 @@ Dabei ist:
 
 ---
 
-## Ableitungen
+## Ableitung
 
 Die Funktion:
 
@@ -89,9 +89,8 @@ $$
 
 ---
 
-## Wertetabelle zur Bestimmung von \( x_{max} \)
+## Wertetabelle zur Bestimmung des Startpunkts
 
-Die folgende Tabelle zeigt Funktionswerte von \( t(x) \) im Bereich von \(1.00\) bis \(1.25\), sodass der Vorzeichenwechsel klar erkennbar ist:
 
 ```{python}
 import pandas as pd
@@ -117,7 +116,7 @@ Als Startwert => x0 = 1.1
 
 ---
 
-## Newton-Verfahren – Python-Code (scrollbar)
+## Newton-Verfahren – Python-Code
 
 ```{python}
 #| echo: true
@@ -130,29 +129,38 @@ import pandas as pd
 def t(x):
     return 0.15 * (3.8 * np.sqrt(x) - 3.2 * x - 0.3 * x**4)
 
-# Erste Ableitung t'(x): notwendig für Newton-Verfahren
+# Erste Ableitung t'(x): notwendig für das Newton-Verfahren
 def dt(x):
     return 0.15 * (3.8 / (2 * np.sqrt(x)) - 3.2 - 1.2 * x**3)
 
+# Startwert für das Newton-Verfahren
 x0 = 1.1
+
+# Abbruchkriterium (Toleranz)
 tol = 1e-6
+
+# Maximale Anzahl an Iterationen
 max_iter = 20
 
+# Liste zur Speicherung der Iterationsergebnisse
 data = []
 
+# Newton-Verfahren zur Bestimmung der Nullstelle von t(x)
 for i in range(max_iter):
-    f_val = t(x0)
-    df_val = dt(x0)
-    x1 = x0 - f_val / df_val
-    dx = abs(x1 - x0)
+    f_val = t(x0)          # Funktionswert an der aktuellen Stelle
+    df_val = dt(x0)        # Ableitungswert an der aktuellen Stelle
+    x1 = x0 - f_val / df_val  # Newton-Schritt
+    dx = abs(x1 - x0)      # Änderung zum vorherigen Wert
     data.append([i, round(x0, 6), round(f_val, 6), f"{dx:.2e}"])
-    if dx < tol:
+    if dx < tol:           # Abbruchbedingung erfüllt?
         break
-    x0 = x1
+    x0 = x1                # Nächste Iteration
 
+# Ergebnis auf 6 Nachkommastellen runden
 x_result = round(x1, 6)
 t_result = round(t(x_result), 6)
 
+# Ergebnisse als DataFrame formatieren
 df_result = pd.DataFrame(data, columns=["Iter", "x_n", "t(x_n)", "Δx"])
 ```
 
@@ -171,7 +179,7 @@ print(f"t(x_max) ≈ {t_result}")
 
 ---
 
-## Bisektionsverfahren für Maximum \( t_{max} \) (scrollbar)
+## Bisektionsverfahren zur Bestimmung des Maximums
 
 ```{python}
 #| echo: true
@@ -180,44 +188,54 @@ print(f"t(x_max) ≈ {t_result}")
 import numpy as np
 import pandas as pd
 
-# Funktionen definieren (erste Ableitung und Originalfunktion)
+# Funktionen definieren (Originalfunktion t(x) und deren Ableitung t'(x))
 def dt(x):
+    # Erste Ableitung von t(x), notwendig zur Bestimmung von Extrempunkten
     return 0.15 * (3.8 / (2 * np.sqrt(x)) - 3.2 - 1.2 * x**3)
 
 def t(x):
+    # Originalfunktion: beschreibt die halbe Dicke des Flügelprofils
     return 0.15 * (3.8 * np.sqrt(x) - 3.2 * x - 0.3 * x**4)
 
-# Anfangsintervall [a,b] festlegen
+# Anfangsintervall für die Bisektion
 a, b = 0.001, 1.108
+
+# Abbruchkriterien
 tol = 1e-6
 max_iter = 50
 
-# Liste für Iterationsdaten
+# Liste zur Speicherung der Iterationsschritte
 data_bisektion = []
 
+# Bisection-Verfahren zur Nullstellenbestimmung von dt(x)
 for i in range(max_iter):
-    xm = (a + b) / 2
-    fa = dt(a)
-    fxm = dt(xm)
-    
-    # Iterationsdaten speichern
-    data_bisektion.append([i, round(a, 6), round(b, 6), round(xm, 6), round(fxm, 6), f"{abs(b - a):.2e}"])
-    
-    # Abbruchkriterium prüfen
+    xm = (a + b) / 2          # Mittelpunkt des aktuellen Intervalls
+    fa = dt(a)                # Funktionswert am linken Rand
+    fxm = dt(xm)              # Funktionswert am Mittelpunkt
+
+    # Iterationsdaten speichern: Iteration, Intervallgrenzen, xm, f(xm), Intervallbreite
+    data_bisektion.append([
+        i,
+        round(a, 6),
+        round(b, 6),
+        round(xm, 6),
+        round(fxm, 6),
+        f"{abs(b - a):.2e}"
+    ])
+
+    # Abbruchbedingung prüfen
     if abs(fxm) < tol or abs(b - a) < tol:
         break
-    
-    # Intervall-Halbierung durchführen
+
+    # Intervallhalbierung basierend auf Vorzeichenwechsel
     if fa * fxm < 0:
         b = xm
     else:
         a = xm
-
-
 ```
 ---
 
-## Ergebnis der Bisektion – Maximale Dicke \( t_{max} \)
+## Ergebnis der Bisektion – Maximale Dicke
 
 ```{python}
 # Ergebnisse als DataFrame anzeigen
@@ -235,7 +253,7 @@ x_max ≈ 0.34218<br>
 Maximale Dicke t_max ≈ 0.168565
 ---
 
-## Verifikation des Ergebnisses (optimiert)
+## Verifikation des Ergebnisses
 
 ```{python}
 import numpy as np
@@ -291,5 +309,12 @@ plt.ylim(-0.25, 0.2)
 plt.show()
 ```
 
-## Danke für deine Aufmerksamkeit
-📌 **Fragen und Diskussionen sind willkommen!**
+## Danke für Ihre Aufmerksamkeit 🙏
+
+Bei Fragen zur Aufgabe stehe ich gerne zur Verfügung. 💬
+
+<p align="center">
+  <img src="Confused_Math_Lad.gif" width="300">
+</p>
+
+*Präsi: [github.com/RUCG/numeric_presentation](https://github.com/RUCG/numeric_presentation)*

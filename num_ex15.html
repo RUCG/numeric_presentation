@@ -193,7 +193,7 @@
 
 <section id="title-slide" class="quarto-title-block center">
   <h1 class="title">Numerik Präsentation</h1>
-  <p class="subtitle">Aufgabe 15 (Flugzeugflügelprofil)</p>
+  <p class="subtitle">Aufgabe 15 (Profil eines Flugzeugflügels)</p>
 
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
@@ -207,22 +207,22 @@ Gian Ruchti
 <nav role="doc-toc"> 
 <h2 id="toc-title">Table of contents</h2>
 <ul>
-<li><a href="#/aufgabe-15-profil-eines-flugzeugflügels" id="/toc-aufgabe-15-profil-eines-flugzeugflügels">Aufgabe 15 – Profil eines Flugzeugflügels</a></li>
+<li><a href="#/aufgabenbeschreibung" id="/toc-aufgabenbeschreibung">Aufgabenbeschreibung</a></li>
 <li><a href="#/graphische-darstellung" id="/toc-graphische-darstellung">Graphische Darstellung</a></li>
 <li><a href="#/newton-verfahren-iterationsformel" id="/toc-newton-verfahren-iterationsformel">Newton-Verfahren – Iterationsformel</a></li>
-<li><a href="#/ableitungen" id="/toc-ableitungen">Ableitungen</a></li>
-<li><a href="#/wertetabelle-zur-bestimmung-von-x_max" id="/toc-wertetabelle-zur-bestimmung-von-x_max">Wertetabelle zur Bestimmung von ( x_{max} )</a></li>
-<li><a href="#/newton-verfahren-python-code-scrollbar" id="/toc-newton-verfahren-python-code-scrollbar">Newton-Verfahren – Python-Code (scrollbar)</a></li>
+<li><a href="#/ableitung" id="/toc-ableitung">Ableitung</a></li>
+<li><a href="#/wertetabelle-zur-bestimmung-des-startpunkts" id="/toc-wertetabelle-zur-bestimmung-des-startpunkts">Wertetabelle zur Bestimmung des Startpunkts</a></li>
+<li><a href="#/newton-verfahren-python-code" id="/toc-newton-verfahren-python-code">Newton-Verfahren – Python-Code</a></li>
 <li><a href="#/ergebnis-des-newton-verfahrens" id="/toc-ergebnis-des-newton-verfahrens">Ergebnis des Newton-Verfahrens</a></li>
-<li><a href="#/bisektionsverfahren-für-maximum-t_max-scrollbar" id="/toc-bisektionsverfahren-für-maximum-t_max-scrollbar">Bisektionsverfahren für Maximum ( t_{max} ) (scrollbar)</a></li>
-<li><a href="#/ergebnis-der-bisektion-maximale-dicke-t_max" id="/toc-ergebnis-der-bisektion-maximale-dicke-t_max">Ergebnis der Bisektion – Maximale Dicke ( t_{max} )</a></li>
-<li><a href="#/verifikation-des-ergebnisses-optimiert" id="/toc-verifikation-des-ergebnisses-optimiert">Verifikation des Ergebnisses (optimiert)</a></li>
-<li><a href="#/danke-für-deine-aufmerksamkeit" id="/toc-danke-für-deine-aufmerksamkeit">Danke für deine Aufmerksamkeit</a></li>
+<li><a href="#/bisektionsverfahren-zur-bestimmung-des-maximums" id="/toc-bisektionsverfahren-zur-bestimmung-des-maximums">Bisektionsverfahren zur Bestimmung des Maximums</a></li>
+<li><a href="#/ergebnis-der-bisektion-maximale-dicke" id="/toc-ergebnis-der-bisektion-maximale-dicke">Ergebnis der Bisektion – Maximale Dicke</a></li>
+<li><a href="#/verifikation-des-ergebnisses" id="/toc-verifikation-des-ergebnisses">Verifikation des Ergebnisses</a></li>
+<li><a href="#/danke-für-ihre-aufmerksamkeit" id="/toc-danke-für-ihre-aufmerksamkeit">Danke für Ihre Aufmerksamkeit 🙏</a></li>
 </ul>
 </nav>
 </section>
-<section id="aufgabe-15-profil-eines-flugzeugflügels" class="slide level2">
-<h2>Aufgabe 15 – Profil eines Flugzeugflügels</h2>
+<section id="aufgabenbeschreibung" class="slide level2">
+<h2>Aufgabenbeschreibung</h2>
 <p>Gegeben ist die Funktion:</p>
 <p><span class="math display">\[
 t(x) = 0.15 \cdot \left(3.8\sqrt{x} - 3.2x - 0.3x^4\right), \quad x \geq 0
@@ -240,8 +240,9 @@ t(x) = 0.15 \cdot \left(3.8\sqrt{x} - 3.2x - 0.3x^4\right), \quad x \geq 0
 <h2>Graphische Darstellung</h2>
 
 <img data-src="num_ex15_files/figure-revealjs/cell-2-output-1.png" class="r-stretch"><ol type="a">
-<li>wir suchen die Nullstelle der funktion im positiven bereich</li>
-<li>wir suchen den x-wert wo die steigung = 0 ist (lokales min/max)</li>
+<li>Wir suchen die Nullstelle der Funktion im positiven Bereich.<br>
+</li>
+<li>Wir suchen den x-Wert, bei dem die Steigung gleich 0 ist (lokales Minimum/Maximum).</li>
 </ol>
 </section>
 <section id="newton-verfahren-iterationsformel" class="slide level2">
@@ -260,8 +261,8 @@ x_{n+1} = x_n - \frac{t(x_n)}{t'(x_n)}
 <li>x_{n+1}&nbsp;&nbsp;: nächste Näherung</li>
 </ul>
 </section>
-<section id="ableitungen" class="slide level2">
-<h2>Ableitungen</h2>
+<section id="ableitung" class="slide level2">
+<h2>Ableitung</h2>
 <p>Die Funktion:</p>
 <p><span class="math display">\[
 t(x) = 0.15 \cdot \left(3.8\sqrt{x} - 3.2x - 0.3x^4\right)
@@ -271,10 +272,9 @@ t(x) = 0.15 \cdot \left(3.8\sqrt{x} - 3.2x - 0.3x^4\right)
 t'(x) = 0.15 \cdot \left(\frac{3.8}{2\sqrt{x}} - 3.2 - 1.2x^3\right)
 \]</span></p>
 </section>
-<section id="wertetabelle-zur-bestimmung-von-x_max" class="slide level2">
-<h2>Wertetabelle zur Bestimmung von ( x_{max} )</h2>
-<p>Die folgende Tabelle zeigt Funktionswerte von ( t(x) ) im Bereich von (1.00) bis (1.25), sodass der Vorzeichenwechsel klar erkennbar ist:</p>
-<div id="bffaa4c9" class="cell" data-execution_count="2">
+<section id="wertetabelle-zur-bestimmung-des-startpunkts" class="slide level2">
+<h2>Wertetabelle zur Bestimmung des Startpunkts</h2>
+<div id="6ed2b608" class="cell" data-execution_count="2">
 <div class="cell-output cell-output-stdout">
 <pre><code>|    x |      t(x) | Vorzeichen   |
 |-----:|----------:|:-------------|
@@ -289,9 +289,9 @@ t'(x) = 0.15 \cdot \left(\frac{3.8}{2\sqrt{x}} - 3.2 - 1.2x^3\right)
 </div>
 <p>Als Startwert =&gt; x0 = 1.1</p>
 </section>
-<section id="newton-verfahren-python-code-scrollbar" class="slide level2">
-<h2>Newton-Verfahren – Python-Code (scrollbar)</h2>
-<div id="2a4ca665" class="cell" data-execution_count="3">
+<section id="newton-verfahren-python-code" class="slide level2">
+<h2>Newton-Verfahren – Python-Code</h2>
+<div id="9330d5a5" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource python code-overflow-scroll number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href=""></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb2-2"><a href=""></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb2-3"><a href=""></a></span>
@@ -299,35 +299,44 @@ t'(x) = 0.15 \cdot \left(\frac{3.8}{2\sqrt{x}} - 3.2 - 1.2x^3\right)
 <span id="cb2-5"><a href=""></a><span class="kw">def</span> t(x):</span>
 <span id="cb2-6"><a href=""></a>    <span class="cf">return</span> <span class="fl">0.15</span> <span class="op">*</span> (<span class="fl">3.8</span> <span class="op">*</span> np.sqrt(x) <span class="op">-</span> <span class="fl">3.2</span> <span class="op">*</span> x <span class="op">-</span> <span class="fl">0.3</span> <span class="op">*</span> x<span class="op">**</span><span class="dv">4</span>)</span>
 <span id="cb2-7"><a href=""></a></span>
-<span id="cb2-8"><a href=""></a><span class="co"># Erste Ableitung t'(x): notwendig für Newton-Verfahren</span></span>
+<span id="cb2-8"><a href=""></a><span class="co"># Erste Ableitung t'(x): notwendig für das Newton-Verfahren</span></span>
 <span id="cb2-9"><a href=""></a><span class="kw">def</span> dt(x):</span>
 <span id="cb2-10"><a href=""></a>    <span class="cf">return</span> <span class="fl">0.15</span> <span class="op">*</span> (<span class="fl">3.8</span> <span class="op">/</span> (<span class="dv">2</span> <span class="op">*</span> np.sqrt(x)) <span class="op">-</span> <span class="fl">3.2</span> <span class="op">-</span> <span class="fl">1.2</span> <span class="op">*</span> x<span class="op">**</span><span class="dv">3</span>)</span>
 <span id="cb2-11"><a href=""></a></span>
-<span id="cb2-12"><a href=""></a>x0 <span class="op">=</span> <span class="fl">1.1</span></span>
-<span id="cb2-13"><a href=""></a>tol <span class="op">=</span> <span class="fl">1e-6</span></span>
-<span id="cb2-14"><a href=""></a>max_iter <span class="op">=</span> <span class="dv">20</span></span>
-<span id="cb2-15"><a href=""></a></span>
-<span id="cb2-16"><a href=""></a>data <span class="op">=</span> []</span>
+<span id="cb2-12"><a href=""></a><span class="co"># Startwert für das Newton-Verfahren</span></span>
+<span id="cb2-13"><a href=""></a>x0 <span class="op">=</span> <span class="fl">1.1</span></span>
+<span id="cb2-14"><a href=""></a></span>
+<span id="cb2-15"><a href=""></a><span class="co"># Abbruchkriterium (Toleranz)</span></span>
+<span id="cb2-16"><a href=""></a>tol <span class="op">=</span> <span class="fl">1e-6</span></span>
 <span id="cb2-17"><a href=""></a></span>
-<span id="cb2-18"><a href=""></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(max_iter):</span>
-<span id="cb2-19"><a href=""></a>    f_val <span class="op">=</span> t(x0)</span>
-<span id="cb2-20"><a href=""></a>    df_val <span class="op">=</span> dt(x0)</span>
-<span id="cb2-21"><a href=""></a>    x1 <span class="op">=</span> x0 <span class="op">-</span> f_val <span class="op">/</span> df_val</span>
-<span id="cb2-22"><a href=""></a>    dx <span class="op">=</span> <span class="bu">abs</span>(x1 <span class="op">-</span> x0)</span>
-<span id="cb2-23"><a href=""></a>    data.append([i, <span class="bu">round</span>(x0, <span class="dv">6</span>), <span class="bu">round</span>(f_val, <span class="dv">6</span>), <span class="ss">f"</span><span class="sc">{</span>dx<span class="sc">:.2e}</span><span class="ss">"</span>])</span>
-<span id="cb2-24"><a href=""></a>    <span class="cf">if</span> dx <span class="op">&lt;</span> tol:</span>
-<span id="cb2-25"><a href=""></a>        <span class="cf">break</span></span>
-<span id="cb2-26"><a href=""></a>    x0 <span class="op">=</span> x1</span>
-<span id="cb2-27"><a href=""></a></span>
-<span id="cb2-28"><a href=""></a>x_result <span class="op">=</span> <span class="bu">round</span>(x1, <span class="dv">6</span>)</span>
-<span id="cb2-29"><a href=""></a>t_result <span class="op">=</span> <span class="bu">round</span>(t(x_result), <span class="dv">6</span>)</span>
-<span id="cb2-30"><a href=""></a></span>
-<span id="cb2-31"><a href=""></a>df_result <span class="op">=</span> pd.DataFrame(data, columns<span class="op">=</span>[<span class="st">"Iter"</span>, <span class="st">"x_n"</span>, <span class="st">"t(x_n)"</span>, <span class="st">"Δx"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-18"><a href=""></a><span class="co"># Maximale Anzahl an Iterationen</span></span>
+<span id="cb2-19"><a href=""></a>max_iter <span class="op">=</span> <span class="dv">20</span></span>
+<span id="cb2-20"><a href=""></a></span>
+<span id="cb2-21"><a href=""></a><span class="co"># Liste zur Speicherung der Iterationsergebnisse</span></span>
+<span id="cb2-22"><a href=""></a>data <span class="op">=</span> []</span>
+<span id="cb2-23"><a href=""></a></span>
+<span id="cb2-24"><a href=""></a><span class="co"># Newton-Verfahren zur Bestimmung der Nullstelle von t(x)</span></span>
+<span id="cb2-25"><a href=""></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(max_iter):</span>
+<span id="cb2-26"><a href=""></a>    f_val <span class="op">=</span> t(x0)          <span class="co"># Funktionswert an der aktuellen Stelle</span></span>
+<span id="cb2-27"><a href=""></a>    df_val <span class="op">=</span> dt(x0)        <span class="co"># Ableitungswert an der aktuellen Stelle</span></span>
+<span id="cb2-28"><a href=""></a>    x1 <span class="op">=</span> x0 <span class="op">-</span> f_val <span class="op">/</span> df_val  <span class="co"># Newton-Schritt</span></span>
+<span id="cb2-29"><a href=""></a>    dx <span class="op">=</span> <span class="bu">abs</span>(x1 <span class="op">-</span> x0)      <span class="co"># Änderung zum vorherigen Wert</span></span>
+<span id="cb2-30"><a href=""></a>    data.append([i, <span class="bu">round</span>(x0, <span class="dv">6</span>), <span class="bu">round</span>(f_val, <span class="dv">6</span>), <span class="ss">f"</span><span class="sc">{</span>dx<span class="sc">:.2e}</span><span class="ss">"</span>])</span>
+<span id="cb2-31"><a href=""></a>    <span class="cf">if</span> dx <span class="op">&lt;</span> tol:           <span class="co"># Abbruchbedingung erfüllt?</span></span>
+<span id="cb2-32"><a href=""></a>        <span class="cf">break</span></span>
+<span id="cb2-33"><a href=""></a>    x0 <span class="op">=</span> x1                <span class="co"># Nächste Iteration</span></span>
+<span id="cb2-34"><a href=""></a></span>
+<span id="cb2-35"><a href=""></a><span class="co"># Ergebnis auf 6 Nachkommastellen runden</span></span>
+<span id="cb2-36"><a href=""></a>x_result <span class="op">=</span> <span class="bu">round</span>(x1, <span class="dv">6</span>)</span>
+<span id="cb2-37"><a href=""></a>t_result <span class="op">=</span> <span class="bu">round</span>(t(x_result), <span class="dv">6</span>)</span>
+<span id="cb2-38"><a href=""></a></span>
+<span id="cb2-39"><a href=""></a><span class="co"># Ergebnisse als DataFrame formatieren</span></span>
+<span id="cb2-40"><a href=""></a>df_result <span class="op">=</span> pd.DataFrame(data, columns<span class="op">=</span>[<span class="st">"Iter"</span>, <span class="st">"x_n"</span>, <span class="st">"t(x_n)"</span>, <span class="st">"Δx"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="ergebnis-des-newton-verfahrens" class="slide level2">
 <h2>Ergebnis des Newton-Verfahrens</h2>
-<div id="0931dcfc" class="cell" data-execution_count="4">
+<div id="ce7835e6" class="cell" data-execution_count="4">
 <div class="cell-output cell-output-stdout">
 <pre><code>|   Iter |     x_n |    t(x_n) |       Δx |
 |-------:|--------:|----------:|---------:|
@@ -340,49 +349,61 @@ t(x_max) ≈ -0.0</code></pre>
 </div>
 </div>
 </section>
-<section id="bisektionsverfahren-für-maximum-t_max-scrollbar" class="slide level2">
-<h2>Bisektionsverfahren für Maximum ( t_{max} ) (scrollbar)</h2>
-<div id="8ee8515f" class="cell" data-execution_count="5">
+<section id="bisektionsverfahren-zur-bestimmung-des-maximums" class="slide level2">
+<h2>Bisektionsverfahren zur Bestimmung des Maximums</h2>
+<div id="fa9c9685" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource python code-overflow-scroll number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href=""></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb4-2"><a href=""></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb4-3"><a href=""></a></span>
-<span id="cb4-4"><a href=""></a><span class="co"># Funktionen definieren (erste Ableitung und Originalfunktion)</span></span>
+<span id="cb4-4"><a href=""></a><span class="co"># Funktionen definieren (Originalfunktion t(x) und deren Ableitung t'(x))</span></span>
 <span id="cb4-5"><a href=""></a><span class="kw">def</span> dt(x):</span>
-<span id="cb4-6"><a href=""></a>    <span class="cf">return</span> <span class="fl">0.15</span> <span class="op">*</span> (<span class="fl">3.8</span> <span class="op">/</span> (<span class="dv">2</span> <span class="op">*</span> np.sqrt(x)) <span class="op">-</span> <span class="fl">3.2</span> <span class="op">-</span> <span class="fl">1.2</span> <span class="op">*</span> x<span class="op">**</span><span class="dv">3</span>)</span>
-<span id="cb4-7"><a href=""></a></span>
-<span id="cb4-8"><a href=""></a><span class="kw">def</span> t(x):</span>
-<span id="cb4-9"><a href=""></a>    <span class="cf">return</span> <span class="fl">0.15</span> <span class="op">*</span> (<span class="fl">3.8</span> <span class="op">*</span> np.sqrt(x) <span class="op">-</span> <span class="fl">3.2</span> <span class="op">*</span> x <span class="op">-</span> <span class="fl">0.3</span> <span class="op">*</span> x<span class="op">**</span><span class="dv">4</span>)</span>
-<span id="cb4-10"><a href=""></a></span>
-<span id="cb4-11"><a href=""></a><span class="co"># Anfangsintervall [a,b] festlegen</span></span>
-<span id="cb4-12"><a href=""></a>a, b <span class="op">=</span> <span class="fl">0.001</span>, <span class="fl">1.108</span></span>
-<span id="cb4-13"><a href=""></a>tol <span class="op">=</span> <span class="fl">1e-6</span></span>
-<span id="cb4-14"><a href=""></a>max_iter <span class="op">=</span> <span class="dv">50</span></span>
+<span id="cb4-6"><a href=""></a>    <span class="co"># Erste Ableitung von t(x), notwendig zur Bestimmung von Extrempunkten</span></span>
+<span id="cb4-7"><a href=""></a>    <span class="cf">return</span> <span class="fl">0.15</span> <span class="op">*</span> (<span class="fl">3.8</span> <span class="op">/</span> (<span class="dv">2</span> <span class="op">*</span> np.sqrt(x)) <span class="op">-</span> <span class="fl">3.2</span> <span class="op">-</span> <span class="fl">1.2</span> <span class="op">*</span> x<span class="op">**</span><span class="dv">3</span>)</span>
+<span id="cb4-8"><a href=""></a></span>
+<span id="cb4-9"><a href=""></a><span class="kw">def</span> t(x):</span>
+<span id="cb4-10"><a href=""></a>    <span class="co"># Originalfunktion: beschreibt die halbe Dicke des Flügelprofils</span></span>
+<span id="cb4-11"><a href=""></a>    <span class="cf">return</span> <span class="fl">0.15</span> <span class="op">*</span> (<span class="fl">3.8</span> <span class="op">*</span> np.sqrt(x) <span class="op">-</span> <span class="fl">3.2</span> <span class="op">*</span> x <span class="op">-</span> <span class="fl">0.3</span> <span class="op">*</span> x<span class="op">**</span><span class="dv">4</span>)</span>
+<span id="cb4-12"><a href=""></a></span>
+<span id="cb4-13"><a href=""></a><span class="co"># Anfangsintervall für die Bisektion</span></span>
+<span id="cb4-14"><a href=""></a>a, b <span class="op">=</span> <span class="fl">0.001</span>, <span class="fl">1.108</span></span>
 <span id="cb4-15"><a href=""></a></span>
-<span id="cb4-16"><a href=""></a><span class="co"># Liste für Iterationsdaten</span></span>
-<span id="cb4-17"><a href=""></a>data_bisektion <span class="op">=</span> []</span>
-<span id="cb4-18"><a href=""></a></span>
-<span id="cb4-19"><a href=""></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(max_iter):</span>
-<span id="cb4-20"><a href=""></a>    xm <span class="op">=</span> (a <span class="op">+</span> b) <span class="op">/</span> <span class="dv">2</span></span>
-<span id="cb4-21"><a href=""></a>    fa <span class="op">=</span> dt(a)</span>
-<span id="cb4-22"><a href=""></a>    fxm <span class="op">=</span> dt(xm)</span>
-<span id="cb4-23"><a href=""></a>    </span>
-<span id="cb4-24"><a href=""></a>    <span class="co"># Iterationsdaten speichern</span></span>
-<span id="cb4-25"><a href=""></a>    data_bisektion.append([i, <span class="bu">round</span>(a, <span class="dv">6</span>), <span class="bu">round</span>(b, <span class="dv">6</span>), <span class="bu">round</span>(xm, <span class="dv">6</span>), <span class="bu">round</span>(fxm, <span class="dv">6</span>), <span class="ss">f"</span><span class="sc">{</span><span class="bu">abs</span>(b <span class="op">-</span> a)<span class="sc">:.2e}</span><span class="ss">"</span>])</span>
-<span id="cb4-26"><a href=""></a>    </span>
-<span id="cb4-27"><a href=""></a>    <span class="co"># Abbruchkriterium prüfen</span></span>
-<span id="cb4-28"><a href=""></a>    <span class="cf">if</span> <span class="bu">abs</span>(fxm) <span class="op">&lt;</span> tol <span class="kw">or</span> <span class="bu">abs</span>(b <span class="op">-</span> a) <span class="op">&lt;</span> tol:</span>
-<span id="cb4-29"><a href=""></a>        <span class="cf">break</span></span>
-<span id="cb4-30"><a href=""></a>    </span>
-<span id="cb4-31"><a href=""></a>    <span class="co"># Intervall-Halbierung durchführen</span></span>
-<span id="cb4-32"><a href=""></a>    <span class="cf">if</span> fa <span class="op">*</span> fxm <span class="op">&lt;</span> <span class="dv">0</span>:</span>
-<span id="cb4-33"><a href=""></a>        b <span class="op">=</span> xm</span>
-<span id="cb4-34"><a href=""></a>    <span class="cf">else</span>:</span>
-<span id="cb4-35"><a href=""></a>        a <span class="op">=</span> xm</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-16"><a href=""></a><span class="co"># Abbruchkriterien</span></span>
+<span id="cb4-17"><a href=""></a>tol <span class="op">=</span> <span class="fl">1e-6</span></span>
+<span id="cb4-18"><a href=""></a>max_iter <span class="op">=</span> <span class="dv">50</span></span>
+<span id="cb4-19"><a href=""></a></span>
+<span id="cb4-20"><a href=""></a><span class="co"># Liste zur Speicherung der Iterationsschritte</span></span>
+<span id="cb4-21"><a href=""></a>data_bisektion <span class="op">=</span> []</span>
+<span id="cb4-22"><a href=""></a></span>
+<span id="cb4-23"><a href=""></a><span class="co"># Bisection-Verfahren zur Nullstellenbestimmung von dt(x)</span></span>
+<span id="cb4-24"><a href=""></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(max_iter):</span>
+<span id="cb4-25"><a href=""></a>    xm <span class="op">=</span> (a <span class="op">+</span> b) <span class="op">/</span> <span class="dv">2</span>          <span class="co"># Mittelpunkt des aktuellen Intervalls</span></span>
+<span id="cb4-26"><a href=""></a>    fa <span class="op">=</span> dt(a)                <span class="co"># Funktionswert am linken Rand</span></span>
+<span id="cb4-27"><a href=""></a>    fxm <span class="op">=</span> dt(xm)              <span class="co"># Funktionswert am Mittelpunkt</span></span>
+<span id="cb4-28"><a href=""></a></span>
+<span id="cb4-29"><a href=""></a>    <span class="co"># Iterationsdaten speichern: Iteration, Intervallgrenzen, xm, f(xm), Intervallbreite</span></span>
+<span id="cb4-30"><a href=""></a>    data_bisektion.append([</span>
+<span id="cb4-31"><a href=""></a>        i,</span>
+<span id="cb4-32"><a href=""></a>        <span class="bu">round</span>(a, <span class="dv">6</span>),</span>
+<span id="cb4-33"><a href=""></a>        <span class="bu">round</span>(b, <span class="dv">6</span>),</span>
+<span id="cb4-34"><a href=""></a>        <span class="bu">round</span>(xm, <span class="dv">6</span>),</span>
+<span id="cb4-35"><a href=""></a>        <span class="bu">round</span>(fxm, <span class="dv">6</span>),</span>
+<span id="cb4-36"><a href=""></a>        <span class="ss">f"</span><span class="sc">{</span><span class="bu">abs</span>(b <span class="op">-</span> a)<span class="sc">:.2e}</span><span class="ss">"</span></span>
+<span id="cb4-37"><a href=""></a>    ])</span>
+<span id="cb4-38"><a href=""></a></span>
+<span id="cb4-39"><a href=""></a>    <span class="co"># Abbruchbedingung prüfen</span></span>
+<span id="cb4-40"><a href=""></a>    <span class="cf">if</span> <span class="bu">abs</span>(fxm) <span class="op">&lt;</span> tol <span class="kw">or</span> <span class="bu">abs</span>(b <span class="op">-</span> a) <span class="op">&lt;</span> tol:</span>
+<span id="cb4-41"><a href=""></a>        <span class="cf">break</span></span>
+<span id="cb4-42"><a href=""></a></span>
+<span id="cb4-43"><a href=""></a>    <span class="co"># Intervallhalbierung basierend auf Vorzeichenwechsel</span></span>
+<span id="cb4-44"><a href=""></a>    <span class="cf">if</span> fa <span class="op">*</span> fxm <span class="op">&lt;</span> <span class="dv">0</span>:</span>
+<span id="cb4-45"><a href=""></a>        b <span class="op">=</span> xm</span>
+<span id="cb4-46"><a href=""></a>    <span class="cf">else</span>:</span>
+<span id="cb4-47"><a href=""></a>        a <span class="op">=</span> xm</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="ergebnis-der-bisektion-maximale-dicke-t_max" class="slide level2">
-<h2>Ergebnis der Bisektion – Maximale Dicke ( t_{max} )</h2>
-<div id="ebfe81c7" class="cell" data-execution_count="6">
+<section id="ergebnis-der-bisektion-maximale-dicke" class="slide level2">
+<h2>Ergebnis der Bisektion – Maximale Dicke</h2>
+<div id="3f6e4cba" class="cell" data-execution_count="6">
 <div class="cell-output cell-output-stdout">
 <pre><code>|   Iter |        a |        b |      x_m |   t'(x_m) |   Δ(b - a) |
 |-------:|---------:|---------:|---------:|----------:|-----------:|
@@ -409,13 +430,17 @@ t(x_max) ≈ -0.0</code></pre>
 </div>
 <p>Endergebnis: <br> x_max ≈ 0.34218<br> Maximale Dicke t_max ≈ 0.168565</p>
 </section>
-<section id="verifikation-des-ergebnisses-optimiert" class="slide level2">
-<h2>Verifikation des Ergebnisses (optimiert)</h2>
+<section id="verifikation-des-ergebnisses" class="slide level2">
+<h2>Verifikation des Ergebnisses</h2>
 
 <img data-src="num_ex15_files/figure-revealjs/cell-8-output-1.png" class="r-stretch"></section>
-<section id="danke-für-deine-aufmerksamkeit" class="slide level2">
-<h2>Danke für deine Aufmerksamkeit</h2>
-<p>📌 <strong>Fragen und Diskussionen sind willkommen!</strong></p>
+<section id="danke-für-ihre-aufmerksamkeit" class="slide level2">
+<h2>Danke für Ihre Aufmerksamkeit 🙏</h2>
+<p>Bei Fragen zur Aufgabe stehe ich gerne zur Verfügung. 💬</p>
+<p align="center">
+<img src="Confused_Math_Lad.gif" width="300">
+</p>
+<p><em>Präsi: <a href="https://github.com/RUCG/numeric_presentation">https://github.com/RUCG/numeric_presentation</a></em></p>
 
 </section>
     </div>
