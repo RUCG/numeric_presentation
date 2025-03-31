@@ -232,17 +232,15 @@ t(x) = 0.15 \cdot \left(3.8\sqrt{x} - 3.2x - 0.3x^4\right), \quad x \geq 0
 <ol type="a">
 <li>Bestimmen Sie die Flügelhinterkante <span class="math inline">\(x_{max}\)</span><br>
 </li>
-<li>Berechnen Sie den maximalen halben Durchmesser <span class="math inline">\(t_{max}\)</span> Genauigkeit: <span class="math inline">\(10^{-6}\)</span> Wählen Sie jeweils sinnvolle Startwerte.</li>
+<li>Berechnen Sie die maximale Profildicke <span class="math inline">\(t_{max}\)</span> mit einer Genauigkeit von <span class="math inline">\(10^{-6}\)</span> Wählen Sie jeweils sinnvolle Startwerte.</li>
 </ol>
-
-<img data-src="DE4208FF-1D72-488B-B453-27D4C18B5711.png" style="width:45.0%" class="r-stretch quarto-figure-center"><p class="caption">Aufgabenstellung</p></section>
+</section>
 <section id="graphische-darstellung" class="slide level2">
 <h2>Graphische Darstellung</h2>
 
 <img data-src="num_ex15_files/figure-revealjs/cell-2-output-1.png" class="r-stretch"><ol type="a">
-<li>Wir suchen die Nullstelle der Funktion im positiven Bereich.<br>
-</li>
-<li>Wir suchen den x-Wert, bei dem die Steigung gleich 0 ist (lokales Minimum/Maximum).</li>
+<li>Gesucht ist die Nullstelle der Funktion im positiven Bereich.</li>
+<li>Gesucht ist der x-Wert, bei dem die Steigung gleich null ist (lokales Extremum).</li>
 </ol>
 </section>
 <section id="newton-verfahren-iterationsformel" class="slide level2">
@@ -274,7 +272,7 @@ t'(x) = 0.15 \cdot \left(\frac{3.8}{2\sqrt{x}} - 3.2 - 1.2x^3\right)
 </section>
 <section id="wertetabelle-zur-bestimmung-des-startpunkts" class="slide level2">
 <h2>Wertetabelle zur Bestimmung des Startpunkts</h2>
-<div id="6ed2b608" class="cell" data-execution_count="2">
+<div id="c8ebd4c3" class="cell" data-execution_count="2">
 <div class="cell-output cell-output-stdout">
 <pre><code>|    x |      t(x) | Vorzeichen   |
 |-----:|----------:|:-------------|
@@ -291,7 +289,7 @@ t'(x) = 0.15 \cdot \left(\frac{3.8}{2\sqrt{x}} - 3.2 - 1.2x^3\right)
 </section>
 <section id="newton-verfahren-python-code" class="slide level2">
 <h2>Newton-Verfahren – Python-Code</h2>
-<div id="9330d5a5" class="cell" data-execution_count="3">
+<div id="338daa91" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource python code-overflow-scroll number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href=""></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb2-2"><a href=""></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb2-3"><a href=""></a></span>
@@ -336,7 +334,7 @@ t'(x) = 0.15 \cdot \left(\frac{3.8}{2\sqrt{x}} - 3.2 - 1.2x^3\right)
 </section>
 <section id="ergebnis-des-newton-verfahrens" class="slide level2">
 <h2>Ergebnis des Newton-Verfahrens</h2>
-<div id="ce7835e6" class="cell" data-execution_count="4">
+<div id="2bbb5630" class="cell" data-execution_count="4">
 <div class="cell-output cell-output-stdout">
 <pre><code>|   Iter |     x_n |    t(x_n) |       Δx |
 |-------:|--------:|----------:|---------:|
@@ -351,7 +349,7 @@ t(x_max) ≈ -0.0</code></pre>
 </section>
 <section id="bisektionsverfahren-zur-bestimmung-des-maximums" class="slide level2">
 <h2>Bisektionsverfahren zur Bestimmung des Maximums</h2>
-<div id="fa9c9685" class="cell" data-execution_count="5">
+<div id="eae5e1af" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource python code-overflow-scroll number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href=""></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb4-2"><a href=""></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb4-3"><a href=""></a></span>
@@ -403,7 +401,7 @@ t(x_max) ≈ -0.0</code></pre>
 </section>
 <section id="ergebnis-der-bisektion-maximale-dicke" class="slide level2">
 <h2>Ergebnis der Bisektion – Maximale Dicke</h2>
-<div id="3f6e4cba" class="cell" data-execution_count="6">
+<div id="5c8d1c37" class="cell" data-execution_count="6">
 <div class="cell-output cell-output-stdout">
 <pre><code>|   Iter |        a |        b |      x_m |   t'(x_m) |   Δ(b - a) |
 |-------:|---------:|---------:|---------:|----------:|-----------:|
@@ -440,7 +438,7 @@ t(x_max) ≈ -0.0</code></pre>
 <p align="center">
 <img src="Confused_Math_Lad.gif" width="300">
 </p>
-<p><em>Präsi: <a href="https://github.com/RUCG/numeric_presentation">https://github.com/RUCG/numeric_presentation</a></em></p>
+<p><em>Präsi: <a href="https://github.com/RUCG/numeric_presentation">github.com/RUCG/numeric_presentation</a></em></p>
 
 </section>
     </div>

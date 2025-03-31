@@ -24,9 +24,8 @@ Diese beschreibt die Oberseite (halber Durchmesser) eines Flugzeugflügels, sola
 **Aufgabenstellung:**
 
 a) Bestimmen Sie die Flügelhinterkante $x_{max}$  
-b) Berechnen Sie den maximalen halben Durchmesser $t_{max}$ Genauigkeit: $10^{-6}$ Wählen Sie jeweils sinnvolle Startwerte.
+b) Berechnen Sie die maximale Profildicke $t_{max}$ mit einer Genauigkeit von $10^{-6}$ Wählen Sie jeweils sinnvolle Startwerte.
 
-![Aufgabenstellung](DE4208FF-1D72-488B-B453-27D4C18B5711.png){ width=45% }
 
 ---
 
@@ -49,8 +48,8 @@ plt.ylabel("t(x)")
 plt.grid(True)
 plt.show()
 ```
-a) Wir suchen die Nullstelle der Funktion im positiven Bereich.  
-b) Wir suchen den x-Wert, bei dem die Steigung gleich 0 ist (lokales Minimum/Maximum).
+a) Gesucht ist die Nullstelle der Funktion im positiven Bereich.
+b) Gesucht ist der x-Wert, bei dem die Steigung gleich null ist (lokales Extremum).
 ---
 
 
@@ -242,7 +241,7 @@ for i in range(max_iter):
 df_bisektion = pd.DataFrame(data_bisektion, columns=["Iter", "a", "b", "x_m", "t'(x_m)", "Δ(b - a)"])
 print(df_bisektion.to_markdown(index=False))
 
-# Endergebnis separat und übersichtlich ausgeben
+# Zusammenfassung des Endergebnisses
 x_max_bisektion = round(xm, 6)
 t_max_bisektion = round(t(x_max_bisektion), 6)
 
